@@ -1,5 +1,7 @@
 export default {
     Query: {
-        products: () => 'Hello World!',
-    },
+        products: async (_source: any, _args:any, { dataSources }: any) => {
+            return dataSources.productsApi.products();
+        },
+    }
 };
