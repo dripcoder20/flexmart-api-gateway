@@ -1,1 +1,0 @@
-export const BASE_API="https://flexmart-cms.dripcoder.com"
