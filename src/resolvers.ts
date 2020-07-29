@@ -12,6 +12,8 @@ export default {
     brands: fetchData("brandsApi", "brands"),
     topBrands: fetchData("brandsApi", "topBrands"),
     categories: fetchData("categoriesApi", "categories"),
-    topCategories: fetchData("categoriesApi", "topCategories")
+    topCategories: fetchData("categoriesApi", "topCategories"),
+    manufacturers: fetchData("manufacturersApi", "manufacturers"),
+    topManufacturers: fetchData("manufacturersApi", "topManufacturers")
   }
 };
