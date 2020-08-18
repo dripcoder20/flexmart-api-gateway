@@ -15,7 +15,8 @@
     "apollo-datasource-rest": "^0.9.3",
     "apollo-server": "^2.15.1",
     "dotenv": "^8.2.0",
-    "graphql": "^15.2.0"
+    "graphql": "^15.2.0",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@types/webpack-env": "^1.15.2",
