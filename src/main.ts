@@ -7,6 +7,7 @@ import { BrandsApi } from './data-source/brands-api';
 import { CategoriesApi } from './data-source/categories-api';
 import dotenv from 'dotenv'
 import { ManufacturersApi } from "./data-source/manufactures-api";
+import { CartApi } from "./data-source/cart-api";
 
 dotenv.config();
 const server = new ApolloServer({
@@ -17,7 +18,8 @@ const server = new ApolloServer({
       productsApi: new ProductsApi(),
       brandsApi: new BrandsApi(),
       categoriesApi: new CategoriesApi(),
-      manufacturersApi: new ManufacturersApi()
+      manufacturersApi: new ManufacturersApi(),
+      cartApi: new CartApi()
     };
   },
 });
