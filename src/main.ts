@@ -12,7 +12,7 @@ import snakeCase from "lodash/snakeCase";
 dotenv.config();
 
 // https://stackoverflow.com/a/53893443
-const snakeCaseFieldResolver = (source, args, contextValue, info) => {
+const snakeCaseFieldResolver = (source, _args, _contextValue, info) => {
   return source[snakeCase(info.fieldName)];
 };
 const server = new ApolloServer({
