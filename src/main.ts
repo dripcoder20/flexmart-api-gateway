@@ -19,6 +19,7 @@ const server = new ApolloServer({
   fieldResolver: snakeCaseFieldResolver,
   resolvers,
   typeDefs,
+  cors: false,
   dataSources: () => {
     return {
       productsApi: new ProductsApi(),
