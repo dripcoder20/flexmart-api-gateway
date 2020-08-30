@@ -71,6 +71,7 @@ export default gql`
     updatedAt: String
     salePrice: Float
     brand: Brand
+    thumbnail: Image
   }
 
   type Category {
