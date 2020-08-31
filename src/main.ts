@@ -11,8 +11,13 @@ import { CartApi } from "./data-source/cart-api";
 import snakeCase from "lodash/snakeCase";
 dotenv.config();
 
+const snakeCaseWhitelist = ["Product", "Category", "Brand", "Manufacturer"];
+
 // https://stackoverflow.com/a/53893443
 const snakeCaseFieldResolver = (source, _args, _contextValue, info) => {
+  if (snakeCaseWhitelist.includes(info.parentType.toString())) {
+    return source[info.fieldName];
+  }
   return source[snakeCase(info.fieldName)];
 };
 const server = new ApolloServer({

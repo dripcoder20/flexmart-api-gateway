@@ -34,7 +34,7 @@ export default gql`
     size: Float
     width: Float
     height: Float
-    url: Float
+    url: String
     formats: ImageFormats
     provider: String
     related: [String]
@@ -55,14 +55,14 @@ export default gql`
     id: ID!
     status: String
     unitOfMeasurement: String
-    quantityPerPack: String
-    discount: String
+    quantityPerPack: Int
+    discount: Float
     variant: String
-    unitPrice: String
-    totalSales: String
+    unitPrice: Float
+    totalSales: Int
     name: String
     slug: String
-    netWeight: String
+    netWeight: Float
     tags: String
     description: String
     stocks: Int
@@ -71,7 +71,8 @@ export default gql`
     updatedAt: String
     salePrice: Float
     brand: Brand
-    thumbnail: Image
+    thumbnails: [Image]
+    order: Int
   }
 
   type Category {
