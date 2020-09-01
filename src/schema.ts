@@ -101,6 +101,7 @@ export default gql`
 
   type Query {
     products(start: Int, limit: Int): [Product]
+    product(id: ID!): Product
     topProducts(start: Int, limit: Int): [Product]
     brands(start: Int, limit: Int): [Brand]
     topBrands(start: Int, limit: Int): [Brand]

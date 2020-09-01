@@ -7,6 +7,7 @@ const fetchData = (api: string, method: string) => {
 export default {
   Query: {
     products: fetchData("productsApi", "products"),
+    product: fetchData("productsApi", "product"),
     cart: fetchData("cartApi", "cart"),
     topProducts: fetchData("productsApi", "topProducts"),
     brands: fetchData("brandsApi", "brands"),
