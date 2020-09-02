@@ -84,6 +84,7 @@ export default gql`
     subCategories: [Category]
     products: [Product]
     order: Int
+    thumbnails: [Image]
   }
 
   type Cart {
