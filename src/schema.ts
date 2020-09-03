@@ -46,6 +46,7 @@ export default gql`
     name: String
     createdAt: String
     updatedAt: String
+    thumbnail: Image
     products: [Product]
     order: Int
     manufacturer: Manufacturer
