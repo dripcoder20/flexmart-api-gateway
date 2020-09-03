@@ -53,7 +53,7 @@ export default gql`
 
   type Product {
     id: ID!
-    status: String
+    status: Int
     unitOfMeasurement: String
     quantityPerPack: Int
     discount: Float
@@ -77,7 +77,6 @@ export default gql`
 
   type Category {
     id: ID!
-    categories: [String]
     name: String
     createdAt: String
     updatedAt: String
