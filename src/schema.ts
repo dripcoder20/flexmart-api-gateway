@@ -89,6 +89,7 @@ export default gql`
 
   type Cart {
     id: ID!
+    thumbnail: String
     userId: String
     productId: String
     sku: String
@@ -119,6 +120,7 @@ export default gql`
     name: String
     unitPrice: Float
     quantity: Int
+    thumbnail: String
     discount: Float
   }
 
