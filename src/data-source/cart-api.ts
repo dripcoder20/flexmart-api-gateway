@@ -8,19 +8,19 @@ export class CartApi extends RESTDataSource {
   }
 
   async cart({ userId }) {
-    const data = (await this.get(`api/cart/${userId}`)).data;
+    const data = (await this.get(`api/${userId}/cart`)).data;
     return data;
   }
 
   async addToCart(userId, input) {
-    return (await this.post(`api/cart/${userId}`, toSnakeCase(input))).data;
+    return (await this.post(`api/${userId}/cart`, toSnakeCase(input))).data;
   }
 
   async deleteCartItem(userId, input) {
-    return (await this.delete(`api/cart/${userId}`, toSnakeCase(input))).data;
+    return (await this.delete(`api/${userId}/cart`, toSnakeCase(input))).data;
   }
 
   async updateCartItem(userId, input) {
-    return (await this.put(`api/cart/${userId}`, toSnakeCase(input))).data;
+    return (await this.put(`api/${userId}/cart`, toSnakeCase(input))).data;
   }
 }
