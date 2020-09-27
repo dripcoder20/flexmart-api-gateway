@@ -109,6 +109,46 @@ export default gql`
     trackingNumber: String
     status: Int
     paymentType: Int
+  }
+
+  type Address {
+    id: ID!
+    address: String
+    barangay: String
+    city: String
+    province: String
+  }
+
+  type ShippingInformation {
+    addressInformation: Address
+    remarks: String
+    mobileNumber: String
+    contactPerson: String
+  }
+
+  type User {
+    id: ID!
+    firstName: String
+    lastName: String
+    mobileNumber: String
+    address: [Address]
+  }
+
+  type Order {
+    id: ID!
+    trackingNumber: ID!
+    amount: Float
+    userId: ID!
+    user: User
+    paymentType: Int
+    shippingType: Int
+    shippingCharge: Float
+    shippingInformation: ShippingInformation
+    discount: Float
+    cart: [Cart]
+    status: Int
+    paymentReceived: Boolean
+    statuses: [OrderStatus]
     createdAt: String
     updatedAt: String
   }
@@ -116,6 +156,15 @@ export default gql`
   type CancelTransactionPayload {
     trackingNumber: String
     status: Int
+  }
+
+  type OrderStatus {
+    id: ID!
+    orderId: ID!
+    status: Int
+    remarks: String
+    createdAt: String
+    updatedAt: String
   }
 
   type Query {
@@ -131,6 +180,8 @@ export default gql`
     manufacturers(start: Int, limit: Int): [Manufacturer]
     transactions(start: Int, limit: Int): [Transaction]
     transaction(trackingNumber: String!): Transaction
+    orders(userId: ID!, start: Int, limit: Int): [Order]
+    order(orderId: ID!, start: Int, limit: Int): Order
   }
 
   input AddToCartInput {
@@ -143,10 +194,56 @@ export default gql`
     discount: Float
   }
 
+  input AddressInput {
+    address: String
+    barangay: String
+    city: String
+    province: String
+  }
+
+  input ShippingInformationInput {
+    addressInformation: AddressInput
+    remarks: String
+    mobileNumber: String
+    contactPerson: String
+  }
+
+  input CartInput {
+    id: ID!
+    thumbnail: String
+    productId: String
+    sku: String
+    name: String
+    unitPrice: Float
+    quantity: Int
+    discount: Float
+  }
+
+  input CheckoutOrderInput {
+    amount: Float
+    paymentType: Int
+    shippingType: Int
+    shippingCharge: Float
+    shippingInformation: ShippingInformationInput
+    discount: Float
+    cart: [CartInput]
+  }
+
+  input UpdateOrderStatusInput {
+    id: ID!
+    orderId: ID!
+    status: Int
+    remarks: String
+    createdAt: String
+    updatedAt: String
+  }
+
   type Mutation {
     addToCart(input: AddToCartInput!): [Cart]
     deleteCartItem(productId: [ID]!): [Cart]
     updateCartItem(productId: ID!, quantity: Int!): [Cart]
-    cancelTransaction(trackingNumber: ID!) : CancelTransactionPayload
+    cancelTransaction(trackingNumber: ID!): CancelTransactionPayload
+    checkout(input: CheckoutOrderInput!): Order
+    updateOrderStatus(input: UpdateOrderStatusInput!): Order
   }
 `;

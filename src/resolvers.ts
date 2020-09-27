@@ -17,7 +17,9 @@ export default {
     manufacturers: fetchData("manufacturersApi", "manufacturers"),
     topManufacturers: fetchData("manufacturersApi", "topManufacturers"),
     transactions: fetchData("transactionsApi", "transactions"),
-    transaction: fetchData("transactionsApi", "transaction")
+    transaction: fetchData("transactionsApi", "transaction"),
+    orders: fetchData("ordersApi", "orders"),
+    order: fetchData("ordersApi", "order"),
   },
   Mutation: {
     addToCart: async (_, { input }, { dataSources }) => {
@@ -44,6 +46,16 @@ export default {
       const userId = 1;
       const transaction = dataSources.transactionsApi.cancelTransaction(userId, trackingNumber);
       return transaction;
-    }
+    },
+
+    checkout: async (_, { input }, { dataSources }) => {
+      const order = dataSources.ordersApi.checkout(input);
+      return order;
+    },
+
+    updateOrderStatus: async (_, { input }, { dataSources }) => {
+      const order = dataSources.ordersApi.updateOrderStatus(input);
+      return order;
+    },
   },
 };
