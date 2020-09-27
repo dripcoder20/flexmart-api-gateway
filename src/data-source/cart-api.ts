@@ -1,5 +1,4 @@
 import { RESTDataSource } from "apollo-datasource-rest";
-import { snakeCase } from "lodash/snakeCase";
 import { toSnakeCase } from "../utilities";
 export class CartApi extends RESTDataSource {
   constructor() {
