@@ -101,6 +101,23 @@ export default gql`
     updatedAt: String
   }
 
+  type Transaction {
+    id: ID!
+    userId: String
+    transactionType: Int
+    amount: Float
+    trackingNumber: String
+    status: Int
+    paymentType: Int
+    createdAt: String
+    updatedAt: String
+  }
+
+  type CancelTransactionPayload {
+    trackingNumber: String
+    status: Int
+  }
+
   type Query {
     products(start: Int, limit: Int): [Product]
     product(id: ID!): Product
@@ -112,6 +129,8 @@ export default gql`
     topManufacturers(start: Int, limit: Int): [Manufacturer]
     cart(userId: ID!): [Cart]
     manufacturers(start: Int, limit: Int): [Manufacturer]
+    transactions(start: Int, limit: Int): [Transaction]
+    transaction(trackingNumber: String!): Transaction
   }
 
   input AddToCartInput {
@@ -128,5 +147,6 @@ export default gql`
     addToCart(input: AddToCartInput!): [Cart]
     deleteCartItem(productId: [ID]!): [Cart]
     updateCartItem(productId: ID!, quantity: Int!): [Cart]
+    cancelTransaction(trackingNumber: ID!) : CancelTransactionPayload
   }
 `;

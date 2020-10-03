@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 import { ManufacturersApi } from "./data-source/manufactures-api";
 import { CartApi } from "./data-source/cart-api";
 import snakeCase from "lodash/snakeCase";
+import { TransactionsApi } from "./data-source/transactions-api";
 dotenv.config();
 
 const snakeCaseWhitelist = ["Product", "Category", "Brand", "Manufacturer"];
@@ -38,6 +39,7 @@ const server = new ApolloServer({
       categoriesApi: new CategoriesApi(),
       manufacturersApi: new ManufacturersApi(),
       cartApi: new CartApi(),
+      transactionsApi: new TransactionsApi()
     };
   },
 });
