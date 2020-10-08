@@ -7,14 +7,13 @@ export class ProductsApi extends RESTDataSource {
     this.baseURL = process.env.PRODUCTS_URL;
   }
 
-  async products({ start = 0, limit = 10 }) {
-    const option = `_start=${start}&_limit=${limit}`;
-    return this.get(`products?${option}`);
+  async products({ _query }) {
+    return this.get("products", _query);
   }
 
-  async topProducts({ start = 0, limit = 10 }) {
-    const option = `_sort=totalSales:DESC&_start=${start}&_limit=${limit}`;
-    return this.get(`products?${option}`);
+  async topProducts({ _query }) {
+    _query._sort = "totalSales:DESC";
+    return this.get(`products`, _query);
   }
 
   async product({ id }) {

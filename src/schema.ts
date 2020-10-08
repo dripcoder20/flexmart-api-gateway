@@ -1,6 +1,7 @@
 import { gql } from "apollo-server";
 
 export default gql`
+  scalar JSON
   type Manufacturer {
     id: ID!
     order: Int
@@ -168,13 +169,13 @@ export default gql`
   }
 
   type Query {
-    products(start: Int, limit: Int): [Product]
+    products(_query: JSON): [Product]
     product(id: ID!): Product
-    topProducts(start: Int, limit: Int): [Product]
+    topProducts(_query: JSON): [Product]
     brands(start: Int, limit: Int): [Brand]
     topBrands(start: Int, limit: Int): [Brand]
-    categories(start: Int, limit: Int): [Category]
-    topCategories(start: Int, limit: Int): [Category]
+    categories(_query: JSON): [Category]
+    topCategories(_query: JSON): [Category]
     topManufacturers(start: Int, limit: Int): [Manufacturer]
     cart(userId: ID!): [Cart]
     manufacturers(start: Int, limit: Int): [Manufacturer]
