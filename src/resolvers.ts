@@ -1,3 +1,5 @@
+import GraphQLJSON from "graphql-type-json";
+
 const fetchData = (api: string, method: string) => {
   return async (_source: any, _args: object, { dataSources }) => {
     return dataSources[api][method](_args);
@@ -5,6 +7,7 @@ const fetchData = (api: string, method: string) => {
 };
 
 export default {
+  JSON: GraphQLJSON,
   Query: {
     products: fetchData("productsApi", "products"),
     product: fetchData("productsApi", "product"),
@@ -44,7 +47,10 @@ export default {
     },
     cancelTransaction: async (_, { trackingNumber }, { dataSources }) => {
       const userId = 1;
-      const transaction = dataSources.transactionsApi.cancelTransaction(userId, trackingNumber);
+      const transaction = dataSources.transactionsApi.cancelTransaction(
+        userId,
+        trackingNumber
+      );
       return transaction;
     },
 
