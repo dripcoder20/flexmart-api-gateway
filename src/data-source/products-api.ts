@@ -12,6 +12,9 @@ export class ProductsApi extends RESTDataSource {
   }
 
   async topProducts({ _query }) {
+    if (!_query) {
+      _query = {};
+    }
     _query._sort = "totalSales:DESC";
     return this.get(`products`, _query);
   }
