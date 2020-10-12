@@ -10,6 +10,9 @@ export class CategoriesApi extends RESTDataSource {
   }
 
   async topCategories({ _query }) {
+    if (!_query) {
+      _query = {}
+    }
     _query._sort = "order:ASC";
     return this.get(`categories`, _query);
   }
