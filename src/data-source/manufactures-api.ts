@@ -8,13 +8,15 @@ export class ManufacturersApi extends RESTDataSource {
     this.baseURL = process.env.PRODUCTS_URL;
   }
   
-  async manufacturers({start = 0, limit = 10}) {
-    const option = `_start=${start}&_limit=${limit}`
-    return this.get(`manufacturers?${option}`);
+  async manufacturers({_query}) {
+    return this.get("manufacturers", _query);
   }
 
-  async topManufacturers({start = 0, limit = 10}) {
-    const option = `_sort=order:DESC&_start=${start}&_limit=${limit}`;
-    return this.get(`manufacturers?${option}`);
+  async topManufacturers({_query}) {
+    if (!_query) {
+      _query = {}
+    }
+    _query._sort = "order:ASC";
+    return this.get("manufacturers", _query);
   }
 }

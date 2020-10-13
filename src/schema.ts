@@ -45,6 +45,7 @@ export default gql`
   type Brand {
     id: ID!
     name: String
+    slug: String
     createdAt: String
     updatedAt: String
     thumbnail: Image
@@ -73,6 +74,7 @@ export default gql`
     updatedAt: String
     salePrice: Float
     brand: Brand
+    categories: [Category]
     thumbnails: [Image]
     order: Int
   }
@@ -80,6 +82,7 @@ export default gql`
   type Category {
     id: ID!
     name: String
+    slug: String
     createdAt: String
     updatedAt: String
     subCategories: [Category]
@@ -176,9 +179,9 @@ export default gql`
     topBrands(start: Int, limit: Int): [Brand]
     categories(_query: JSON): [Category]
     topCategories(_query: JSON): [Category]
-    topManufacturers(start: Int, limit: Int): [Manufacturer]
+    topManufacturers(_query: JSON): [Manufacturer]
     cart(userId: ID!): [Cart]
-    manufacturers(start: Int, limit: Int): [Manufacturer]
+    manufacturers(_query:JSON): [Manufacturer]
     transactions(start: Int, limit: Int): [Transaction]
     transaction(trackingNumber: String!): Transaction
     orders(userId: ID!, start: Int, limit: Int): [Order]
