@@ -1,5 +1,6 @@
 import { RESTDataSource } from "apollo-datasource-rest";
 import { ApolloError } from "apollo-server";
+import qs from "qs";
 
 export class ProductsApi extends RESTDataSource {
   constructor() {
@@ -8,7 +9,7 @@ export class ProductsApi extends RESTDataSource {
   }
 
   async products({ _query }) {
-    return this.get("products", _query);
+    return this.get("products", qs.stringify(_query));
   }
 
   async topProducts({ _query }) {
