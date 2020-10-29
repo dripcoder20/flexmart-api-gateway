@@ -1,4 +1,4 @@
-import { ApolloServer, ApolloError } from "apollo-server";
+import { ApolloServer, ApolloError, ForbiddenError } from "apollo-server";
 
 import resolvers from "./resolvers";
 import typeDefs from "./schema";
@@ -11,6 +11,7 @@ import { CartApi } from "./data-source/cart-api";
 import snakeCase from "lodash/snakeCase";
 import { TransactionsApi } from "./data-source/transactions-api";
 import { OrdersApi } from "./data-source/orders-api";
+import { getUser } from './firebase-admin'
 dotenv.config();
 
 const snakeCaseWhitelist = ["Product", "Category", "Brand", "Manufacturer"];
@@ -23,6 +24,12 @@ const snakeCaseFieldResolver = (source, _args, _contextValue, info) => {
   return source[snakeCase(info.fieldName)];
 };
 const server = new ApolloServer({
+  context: async ({req}) =>{
+    const token = req.headers.authorization || '';
+    if (token) {
+      return {user: await getUser(token)}
+    }
+  },
   fieldResolver: snakeCaseFieldResolver,
   resolvers,
   typeDefs,
