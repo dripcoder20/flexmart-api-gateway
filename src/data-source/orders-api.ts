@@ -17,9 +17,6 @@ export class OrdersApi extends RESTDataSource {
   }
 
   async checkout(input) {
-    input.userId = 1;
-    input.user = { firstName: "123" };
-
     return (await this.post(`api/orders`, toSnakeCase(input))).data;
   }
 

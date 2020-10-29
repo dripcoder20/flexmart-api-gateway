@@ -180,11 +180,11 @@ export default gql`
     categories(_query: JSON): [Category]
     topCategories(_query: JSON): [Category]
     topManufacturers(_query: JSON): [Manufacturer]
-    cart(userId: ID!): [Cart]
+    cart: [Cart]
     manufacturers(_query:JSON): [Manufacturer]
     transactions(start: Int, limit: Int): [Transaction]
     transaction(trackingNumber: String!): Transaction
-    orders(userId: ID!, start: Int, limit: Int): [Order]
+    orders(start: Int, limit: Int): [Order]
     order(orderId: ID!, start: Int, limit: Int): Order
   }
 
