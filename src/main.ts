@@ -38,7 +38,7 @@ const server = new ApolloServer({
     credentials: true,
   },
   formatError: (err) => {
-    return new ApolloError(err.message);
+    return new ApolloError(err.message, err.extensions.code, { code: err.extensions.code });
   },
   dataSources: () => {
     return {
