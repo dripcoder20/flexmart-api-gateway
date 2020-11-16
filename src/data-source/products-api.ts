@@ -1,5 +1,4 @@
 import { RESTDataSource } from "apollo-datasource-rest";
-import { ApolloError } from "apollo-server";
 import qs from "qs";
 
 export class ProductsApi extends RESTDataSource {

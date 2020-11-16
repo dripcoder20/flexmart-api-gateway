@@ -37,16 +37,17 @@ const server = new ApolloServer({
     origin: "*",
     credentials: true,
   },
-  formatError: (err) => {
-    return new ApolloError(err.message, err.extensions.code, { code: err.extensions.code });
-  },
+  // formatError: (err) => {
+  //   return new ApolloError(err.message, err.extensions.code, { code: err.extensions.code });
+  // },
   dataSources: () => {
+    const productsApi = new ProductsApi()
     return {
-      productsApi: new ProductsApi(),
+      productsApi,
       brandsApi: new BrandsApi(),
       categoriesApi: new CategoriesApi(),
       manufacturersApi: new ManufacturersApi(),
-      cartApi: new CartApi(),
+      cartApi: new CartApi(productsApi),
       transactionsApi: new TransactionsApi(),
       ordersApi: new OrdersApi(),
     };
